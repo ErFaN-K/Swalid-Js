@@ -26,7 +26,7 @@ class Swalid {
                 const mergedConfig = { ...this.defaultConfig(), ...config };
                 this.initialElement(input, mergedConfig);
             });
-        } 
+        }
         // If a single input selector is passed
         else if (typeof inputName === "string") {
             this.config = { ...this.defaultConfig(), ...config };
@@ -34,4 +34,30 @@ class Swalid {
         } else {
             console.error("Invalid input type");
         }
+    }
+    /**
+   * @private
+   * @description Initializes the input element and form for validation.
+   * @param {string} inputName - The input selector to validate.
+   * @param {Object} config - Configuration object for validation settings.
+   * @returns {void}
+   * @throws Will log errors if the input or form element is invalid.
+   */
+    initialElement(inputName, config) {
+        const inputElement = document.querySelector(inputName);
+        if (!inputElement || inputElement.tagName !== "INPUT") {
+            console.error("Invalid input element");
+            return;
+        }
+
+        const formElement = document.querySelector(config.formElement) || inputElement.closest("form");
+        if (!formElement || formElement.tagName !== "FORM") {
+            console.warn("Form element not found or invalid");
+            return;
+        }
+
+        formElement.addEventListener("submit", (e) => e.preventDefault()); // Prevent form submission
+
+        // Add event listener to validate on user input
+        inputElement.addEventListener(config.eventName, () => this.validate(inputElement, config));
     }
