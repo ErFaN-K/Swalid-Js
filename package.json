@@ -1,6 +1,6 @@
 {
   "name": "swalidjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight JavaScript library for validating user input with customizable options and SweetAlert2 integration.",
   "main": "index.js",
   "directories": {
@@ -25,9 +25,6 @@
     "sweetalert2": "^11.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.9",
-    "@babel/preset-env": "^7.26.9",
-    "babel-loader": "^10.0.0",
     "webpack": "^5.0.0",
     "webpack-cli": "^4.0.0"
   },
