@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fa-farsi" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swalid Js - Exmaple</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #111;
+        font-family: "Rubik";
+    }
+
+    input,
+    input::placeholder {
+        font-family: "Rubik";
+    }
+
+
+    input {
+        width: 400px;
+        height: 50px;
+        border-radius: 14px;
+        border: none;
+        outline: none;
+        background-color: #000;
+        color: #fff;
+        padding-inline: 14px;
+    }
+</style>
+
+<body>
+    <input type="text" placeholder="متنی را وارد کنید">
+
+    <script src="../dist/swalid.js"></script>
+    <script>
+        const validate = new Swalid('input', {
+            required: true,
+            eventName: "input",
+            minLength: 6,
+            maxLength: 12,
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,10 @@
+.git/
+.github/
+.vscode/
+tests/
+docs/
+examples/
+webpack.config.js
+.DS_Store
+Thumbs.db
+src/
