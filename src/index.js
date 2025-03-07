@@ -35,6 +35,7 @@ class Swalid {
             console.error("Invalid input type");
         }
     }
+
     /**
    * @private
    * @description Initializes the input element and form for validation.
@@ -61,6 +62,7 @@ class Swalid {
         // Add event listener to validate on user input
         inputElement.addEventListener(config.eventName, () => this.validate(inputElement, config));
     }
+
     /**
          * @description Validates the input field based on the configuration.
          * @param {HTMLElement} inputElement - The input element to validate.
@@ -86,6 +88,7 @@ class Swalid {
             config.onValidationError(inputElement, configinputElement, config);
         }
     }
+    
     /**
          * @private
          * @description Shows a SweetAlert2 notification with the given parameters.
