@@ -61,3 +61,28 @@ class Swalid {
         // Add event listener to validate on user input
         inputElement.addEventListener(config.eventName, () => this.validate(inputElement, config));
     }
+    /**
+         * @description Validates the input field based on the configuration.
+         * @param {HTMLElement} inputElement - The input element to validate.
+         * @param {Object} config - The validation configuration.
+         * @returns {void}
+         * @throws Will execute success or error callback based on validation result.
+         */
+    validate(inputElement, config) {
+        let isValid = true;
+
+        // Run validation checks based on the config
+        if (config.required && !this.checkRequired(inputElement, config)) isValid = false;
+        if (config.minLength && !this.checkMinLength(inputElement, config)) isValid = false;
+        if (config.maxLength && !this.checkMaxLength(inputElement, config)) isValid = false;
+        if (config.emailValidation && !this.checkEmail(inputElement, config)) isValid = false;
+        if (config.checkPasswordSecurity && !this.checkPasswordSecurity(inputElement, config)) isValid = false;
+        if (config.customRegEx && !this.checkCustomValidator(inputElement, config)) isValid = false;
+
+        // Call respective callback function depending on validation result
+        if (isValid) {
+            config.onValidationSuccess(inputElement, configinputElement, config);
+        } else {
+            config.onValidationError(inputElement, configinputElement, config);
+        }
+    }
