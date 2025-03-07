@@ -107,3 +107,140 @@ class Swalid {
             theme: config.swalTheme
         });
     }
+
+    /**
+     * @private
+     * @description Validates if the input is required (not empty).
+     * @param {HTMLElement} inputName - The input element to check.
+     * @param {Object} config - The configuration object.
+     * @returns {boolean} - True if valid (non-empty), false otherwise.
+     */
+    checkRequired(inputName, config) {
+        if (inputName.value.trim() === '') {
+            this.showSwal(config.swalTitleRequired, config.swalTextRequired, config.swalIconRequired, config);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @private
+     * @description Validates if the input length is greater than or equal to the minimum length.
+     * @param {HTMLElement} inputName - The input element to check.
+     * @param {Object} config - The configuration object.
+     * @returns {boolean} - True if valid (length >= minLength), false otherwise.
+     */
+    checkMinLength(inputName, config) {
+        if (inputName.value.length < config.minLength) {
+            this.showSwal(config.swalTitleMinLength, config.swalTextMinLength, config.swalIconMinLength, config);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @private
+     * @description Validates if the input length is less than or equal to the maximum length.
+     * @param {HTMLElement} inputName - The input element to check.
+     * @param {Object} config - The configuration object.
+     * @returns {boolean} - True if valid (length <= maxLength), false otherwise.
+     */
+    checkMaxLength(inputName, config) {
+        if (inputName.value.length > config.maxLength) {
+            this.showSwal(config.swalTitleMaxLength, config.swalTextMaxLength, config.swalIconMaxLength, config);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @private
+     * @description Validates if the input is a valid email.
+     * @param {HTMLElement} inputName - The input element to check.
+     * @param {Object} config - The configuration object.
+     * @returns {boolean} - True if valid email format, false otherwise.
+     */
+    checkEmail(inputName, config) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(inputName.value)) {
+            this.showSwal(config.swalTitleEmailValidation, config.swalTextEmailValidation, config.swalIconEmailValidation, config);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @private
+     * @description Validates the input against a custom regular expression.
+     * @param {HTMLElement} inputName - The input element to check.
+     * @param {Object} config - The configuration object.
+     * @returns {boolean} - True if valid, false otherwise.
+     */
+    checkCustomValidator(inputName, config) {
+        const customRegEx = new RegExp(config.customRegEx);
+        if (!customRegEx.test(inputName.value)) {
+            this.showSwal(config.swalTitleCustomValidation, config.swalTextCustomValidation, config.swalIconCustomValidation, config);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @private
+     * @description Validates if the input password meets security requirements.
+     * @param {HTMLElement} inputName - The input element to check.
+     * @param {Object} config - The configuration object.
+     * @returns {boolean} - True if valid, false otherwise.
+     */
+    checkPasswordSecurity(inputName, config) {
+        if (!config.checkPasswordRegEx.test(inputName.value)) {
+            this.showSwal(config.swalTitleCheckPasswordSecurity, config.swalTextCheckPasswordSecurity, config.swalIconCheckPasswordSecurity, config);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @private
+     * @description Provides default configuration values for validation.
+     * @returns {Object} - The default configuration object with validation settings.
+     */
+    defaultConfig() {
+        return {
+            formElement: null,
+            required: false,
+            minLength: null,
+            maxLength: null,
+            emailValidation: false,
+            checkPasswordSecurity: false,
+            checkPasswordRegEx: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/,
+            eventName: "blur",
+            customRegEx: "//",
+            onValidationError: (inputElement, config) => { },
+            onValidationSuccess: (inputElement, config) => { },
+            swalPosition: "bottom-end",
+            swalTimer: 2000,
+            swalTheme: "",
+            swalTitleRequired: "هشدار",
+            swalTextRequired: "این فیلد باید تکمیل شود",
+            swalIconRequired: "warning",
+            swalTitleMinLength: "هشدار",
+            swalTextMinLength: "فیلد مورد نظر باید حداقل دارای X حرف باشد",
+            swalIconMinLength: "warning",
+            swalTitleMaxLength: "هشدار",
+            swalTextMaxLength: "فیلد مورد نظر باید حداکثر دارای X حرف باشد",
+            swalIconMaxLength: "warning",
+            swalTitleEmailValidation: "هشدار",
+            swalTextEmailValidation: "پست الکترونیک صحیح نمیباشد",
+            swalIconEmailValidation: "warning",
+            swalTitleCustomValidation: "هشدار",
+            swalTextCustomValidation: "مقدار تستی",
+            swalIconCustomValidation: "warning",
+            swalTitleCheckPasswordSecurity: "هشدار",
+            swalTextCheckPasswordSecurity: "پسورد شما امن نیست",
+            swalIconCheckPasswordSecurity: "warning",
+        };
+    }
+}
+
+export default Swalid;
