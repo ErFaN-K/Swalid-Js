@@ -86,3 +86,24 @@ class Swalid {
             config.onValidationError(inputElement, configinputElement, config);
         }
     }
+    /**
+         * @private
+         * @description Shows a SweetAlert2 notification with the given parameters.
+         * @param {string} title - The title of the alert.
+         * @param {string} text - The text of the alert.
+         * @param {string} icon - The icon for the alert (e.g., "error").
+         * @param {Object} config - The configuration object for Swal.
+         * @returns {void}
+         */
+    showSwal(title, text, icon, config) {
+        Swal.fire({
+            title,
+            text,
+            icon,
+            position: config.swalPosition,
+            toast: true,
+            showConfirmButton: false,
+            timer: config.swalTimer,
+            theme: config.swalTheme
+        });
+    }
