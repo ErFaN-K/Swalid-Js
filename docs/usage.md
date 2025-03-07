@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="./examples/image/Iran🦁.png" align="center" width="100">
+</p>
+
 ## **🔠 Usage**
 
 Swalid is a lightweight JavaScript library that makes validating user inputs easy and customizable. With just a few lines of code, you can integrate it into your project and start validating user inputs with clear and beautiful popups.
@@ -7,7 +11,7 @@ Swalid is a lightweight JavaScript library that makes validating user inputs eas
 You can easily include Swalid in your project and start validating input fields right away.
 
 ```js
-import Swalid from "swalid";
+import Swalid from "swalidjs";
 
 // Initialize Swalid on an input element with custom configurations
 const validator = new Swalid("#inputID", {
@@ -29,7 +33,7 @@ const validator = new Swalid("#inputID", {
 If you prefer not to use npm, you can directly include Swalid via CDN in your HTML:
 
 ```html
-<script src="https://unpkg.com/swalid"></script>
+<script src="https://cdn.jsdelivr.net/npm/swalidjs@latest/dist/bundle.js"></script>
 <script>
    const validator = new Swalid("#inputID", {
        required: true,

@@ -1,10 +1,14 @@
+<p align="center">
+    <img src="./examples/image/Iran🦁.png" align="center" width="100">
+</p>
+
 ## **⚙️ Options**
 
 Swalid comes with several options that allow you to customize the validation process for each input field. Below is a list of configurable options.
 
 | Option                           | Data Type     | Default Value                                    | Description                                |
 | -------------------------------- | ------------- | ------------------------------------------------ | ------------------------------------------ |
-| `formElement`                    | `HTMLElement` | `closest form`                                   | The form element to disabled submit        |
+| `formElement`                    | `HTMLElement` | `closest form`                                   | The form element to disabled submit (REQUIRED)       |
 | `required`                       | `boolean`     | `false`                                          | If the input is required                   |
 | `minLength`                      | `number`      | `null`                                           | Minimum length of input                    |
 | `maxLength`                      | `number`      | `null`                                           | Maximum length of input                    |

@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="./examples/image/Iran🦁.png" align="center" width="100">
+</p>
+
 ## **🚀 Installation**
 
 ### **1. Install via npm (Recommended)**
@@ -14,7 +18,7 @@ The easiest way to get started with Swalid is by installing it via npm. This all
 3. After installation, you can import Swalid into your JavaScript code:
 
    ```js
-   import Swalid from "swalid";
+   import Swalid from "swalidjs";
    ```
 
 ---
@@ -26,7 +30,7 @@ If you prefer not to use npm or package managers, you can easily include Swalid 
 1. Add the following script tag inside your HTML file, right before the closing `</body>` tag:
 
    ```html
-   <script src="https://unpkg.com/swalid"></script>
+   <script src="https://cdn.jsdelivr.net/npm/swalidjs@latest/dist/bundle.js"></script>
    ```
 
 2. Once added, you can start using Swalid in your JavaScript code like so:

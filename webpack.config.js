@@ -1,19 +1,31 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-module.exports = {
-    entry: './src/index.js',
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+export default {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  mode: 'production',
+  devtool: 'source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
+  },
+  resolve: {
+    alias: {
+      Swalid: path.resolve(__dirname, 'src/Swalid.js'),
     },
-
-    mode: 'production',
-    devtool: 'source-map',
-
-    devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        compress: true,
-        port: 9000,
-    },
+  },
 };

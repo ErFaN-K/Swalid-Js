@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="./examples/image/Iran🦁.png" align="center" width="100">
+</p>
+
 ## **🤝 Contributing**
 
 We welcome contributions from the community! Whether you want to fix bugs, add new features, improve documentation, or help with other aspects of the project, here's how you can contribute to **Swalid**:

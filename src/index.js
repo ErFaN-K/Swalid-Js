@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
  * @class Swalid
  * @description A class to handle input validation with SweetAlert2 notifications.
  */
-class Swalid {
+export default class Swalid {
     /**
      * @constructor
      * @param {string|Array} inputName - The selector for the input element(s) to validate.
@@ -53,7 +53,7 @@ class Swalid {
 
         const formElement = document.querySelector(config.formElement) || inputElement.closest("form");
         if (!formElement || formElement.tagName !== "FORM") {
-            console.warn("Form element not found or invalid");
+            console.error("Form element not found or invalid");
             return;
         }
 
@@ -83,12 +83,12 @@ class Swalid {
 
         // Call respective callback function depending on validation result
         if (isValid) {
-            config.onValidationSuccess(inputElement, configinputElement, config);
+            config.onValidationSuccess(inputElement, config);
         } else {
-            config.onValidationError(inputElement, configinputElement, config);
+            config.onValidationError(inputElement, config);
         }
     }
-    
+
     /**
          * @private
          * @description Shows a SweetAlert2 notification with the given parameters.
@@ -181,11 +181,16 @@ class Swalid {
      */
     checkCustomValidator(inputName, config) {
         const customRegEx = new RegExp(config.customRegEx);
-        if (!customRegEx.test(inputName.value)) {
-            this.showSwal(config.swalTitleCustomValidation, config.swalTextCustomValidation, config.swalIconCustomValidation, config);
-            return false;
+        if (customRegEx) {
+            if (!customRegEx.test(inputName.value)) {
+                this.showSwal(config.swalTitleCustomValidation, config.swalTextCustomValidation, config.swalIconCustomValidation, config);
+                return false;
+            }
+            return true;
         }
-        return true;
+        else {
+            return false
+        }
     }
 
     /**
@@ -218,7 +223,7 @@ class Swalid {
             checkPasswordSecurity: false,
             checkPasswordRegEx: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/,
             eventName: "blur",
-            customRegEx: "//",
+            customRegEx: false,
             onValidationError: (inputElement, config) => { },
             onValidationSuccess: (inputElement, config) => { },
             swalPosition: "bottom-end",
@@ -245,5 +250,6 @@ class Swalid {
         };
     }
 }
-
-export default Swalid;
+if (typeof window !== "undefined") {
+    window.Swalid = Swalid;
+}

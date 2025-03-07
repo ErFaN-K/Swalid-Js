@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/Iran🦁.png" type="image/png">
     <title>Swalid Js - Exmaple</title>
 </head>
 <style>
@@ -25,33 +26,60 @@
     }
 
     input,
+    button,
     input::placeholder {
         font-family: "Rubik";
     }
 
 
-    input {
+    input,
+    button {
+        display: block;
+        margin-bottom: 12px;
         width: 400px;
         height: 50px;
         border-radius: 14px;
         border: none;
         outline: none;
-        background-color: #000;
         color: #fff;
         padding-inline: 14px;
+        text-align: center;
+    }
+
+    input {
+        background-color: #000;
+    }
+
+    button {
+        background-color: #f00;
+    }
+
+    button:disabled {
+        opacity: .5;
+        cursor: not-allowed;
     }
 </style>
 
 <body>
-    <input type="text" placeholder="متنی را وارد کنید">
-
-    <script src="../dist/swalid.js"></script>
+    <form action="">
+        <input type="text" id="input" placeholder="مقداری را وارد کنید">
+        <button type="submit">ثبت اطلاعات</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/swalidjs@1.0.3/dist/bundle.js"></script>
     <script>
-        const validate = new Swalid('input', {
+        const validate = new Swalid('#input', {
             required: true,
-            eventName: "input",
-            minLength: 6,
-            maxLength: 12,
+            customRegEx: /^[1-9]/,
+            swalTitleCustomValidation: 'خطا',
+            swalTextCustomValidation: 'مقدار وارد شده عدد نمیباشد',
+            swalIconCustomValidation: 'error',
+            swalTheme: "dark",
+            onValidationError: () => {
+                document.querySelector('button').setAttribute('disabled', true)
+            },
+            onValidationSuccess: () => {
+                document.querySelector('button').removeAttribute('disabled')
+            }
         })
     </script>
 </body>
