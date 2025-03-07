@@ -1,6 +1,6 @@
 {
   "name": "swalidjs",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "A lightweight JavaScript library for validating user input with customizable options and SweetAlert2 integration.",
   "main": "./src/index.js",
   "directories": {

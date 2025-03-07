@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./examples/image/Iran🦁.png" align="center" width="100">
+    <img src="../examples/image/Iran🦁.png" align="center" width="100">
 </p>
 
 ## **🤝 Contributing**
