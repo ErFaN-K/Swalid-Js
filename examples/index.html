@@ -62,12 +62,12 @@
 
 <body>
     <form action="#">
-        <input type="text" id="input" placeholder="مقداری را وارد کنید">
-        <input type="text" id="ERFA" placeholder="مقداری را وارد کنید">
+        <input type="text" id="input1" placeholder="مقداری را وارد کنید">
+        <input type="text" id="input2" placeholder="مقداری را وارد کنید">
         <button type="submit">ثبت اطلاعات</button>
     </form>
     
-    <script src="../dist/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swalidjs@latest/dist/bundle.js"></script>
     <script>
         const validate = new Swalid([
             {
@@ -77,7 +77,7 @@
                 }
             },
             {
-                input: "#ERFA",
+                input: "#input2",
                 config: {
                     required: true,
                 }
