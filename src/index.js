@@ -51,16 +51,19 @@ export default class Swalid {
             return;
         }
 
-        const formElement = document.querySelector(config.formElement) || inputElement.closest("form");
-        if (!formElement || formElement.tagName !== "FORM") {
-            console.error("Form element not found or invalid");
-            return;
+        if (!this.formElement) {
+            this.formElement = document.querySelector(config.formElement) || inputElement.closest("form");
+            if (!this.formElement || this.formElement.tagName !== "FORM") {
+                console.error("Form element not found or invalid");
+                return;
+            }
+
+            this.formElement.addEventListener("submit", (event) => this.checkFormAccessSubmit(event));
         }
 
-        formElement.addEventListener("submit", (e) => e.preventDefault()); // Prevent form submission
-
-        // Add event listener to validate on user input
         inputElement.addEventListener(config.eventName, () => this.validate(inputElement, config));
+        inputElement.classList.add('Swalid-js');
+        inputElement.setAttribute('data-valid', false);
     }
 
     /**
@@ -84,8 +87,10 @@ export default class Swalid {
         // Call respective callback function depending on validation result
         if (isValid) {
             config.onValidationSuccess(inputElement, config);
+            inputElement.setAttribute('data-valid', true)
         } else {
             config.onValidationError(inputElement, config);
+            inputElement.setAttribute('data-valid', false)
         }
     }
 
@@ -210,6 +215,28 @@ export default class Swalid {
 
     /**
      * @private
+     * @description Check All Input ( is Valid Or Not ) for From Submit
+     * @param {event} e - Event Object For Form Element
+     * @returns {void}
+     */
+    checkFormAccessSubmit(e) {
+        e.preventDefault();
+
+        let allValid = true;
+        const inputs = this.formElement.querySelectorAll(".Swalid-js");
+        inputs.forEach(input => {
+            if (input.getAttribute('data-valid') !== 'true') {
+                allValid = false;
+            }
+        });
+
+        if (allValid) {
+            this.formElement.submit();
+        }
+    }
+
+    /**
+     * @private
      * @description Provides default configuration values for validation.
      * @returns {Object} - The default configuration object with validation settings.
      */
@@ -253,3 +280,4 @@ export default class Swalid {
 if (typeof window !== "undefined") {
     window.Swalid = Swalid;
 }
+

@@ -61,27 +61,28 @@
 </style>
 
 <body>
-    <form action="">
+    <form action="#">
         <input type="text" id="input" placeholder="مقداری را وارد کنید">
+        <input type="text" id="ERFA" placeholder="مقداری را وارد کنید">
         <button type="submit">ثبت اطلاعات</button>
     </form>
     
-    <script src="https://cdn.jsdelivr.net/npm/swalidjs@1.0.3/dist/bundle.js"></script>
+    <script src="../dist/bundle.js"></script>
     <script>
-        const validate = new Swalid('#input', {
-            required: true,
-            customRegEx: /^[1-9]/,
-            swalTitleCustomValidation: 'خطا',
-            swalTextCustomValidation: 'مقدار وارد شده عدد نمیباشد',
-            swalIconCustomValidation: 'error',
-            swalTheme: "dark",
-            onValidationError: () => {
-                document.querySelector('button').setAttribute('disabled', true)
+        const validate = new Swalid([
+            {
+                input: "#input", 
+                config: {
+                    emailValidation: true,
+                }
             },
-            onValidationSuccess: () => {
-                document.querySelector('button').removeAttribute('disabled')
+            {
+                input: "#ERFA",
+                config: {
+                    required: true,
+                }
             }
-        })
+        ])
     </script>
 </body>
 
